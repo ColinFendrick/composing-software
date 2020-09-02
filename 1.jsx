@@ -7,5 +7,5 @@ transform(3); // 8
 
 /* x is 3 and passed into g, or inc, first
   Then inc(3) is passed to f, or double,
-  8 is returned
+  8 is returnedd
 */
