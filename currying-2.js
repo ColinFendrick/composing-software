@@ -17,11 +17,8 @@ const inc = add(1); // the partial application of add
 const four = inc(3);
 
 // Why curry? To simplify and modularize our code:
-const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x);
-const f = n => n * 2;
-const g = n => n + 1;
-const h = n => n - 4;
 
+import { compose, f, g, h } from './functions.js';
 const fortyTwo = compose(f, g, h)(24);
 // 24 - 4 + 1 * 2
 let thirty = compose(g, g, h, f)(16);
