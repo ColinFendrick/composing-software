@@ -13,3 +13,36 @@ const filter = (f, arr) => arr.reduce((newArr, item) =>
 const compose = (...fns) => x => fns.reduceRight((v, f) => f(v, x));
 
 const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
+
+/*
+	Redux-style reducers:
+	- A reducer called w/ no params should return valid initial state
+	- Reducers which cannot handle an action type should still return state
+	- Pure fn
+*/
+
+/**
+ * reducer(state, action: { type, payload }) => newState
+ */
+
+const ADD_VALUE = 'ADD_VALUE';
+const reduxStyleReducer = (state = 0, action = {}) => {
+	const { type, payload } = action;
+	switch (type) {
+	case ADD_VALUE:
+		return state + payload.value;
+	default: return state;
+	}
+};
+
+// Since this follows the standard reducer pattern, it can go anywhere a normal reducer would be used
+
+const actions = [
+	{ type: ADD_VALUE, payload: { value: 1 }},
+	{ type: ADD_VALUE, payload: { value: 1 }
+	},
+	{ type: ADD_VALUE, payload: { value: 1 }},
+	{ type: ADD_VALUE, payload: { value: 1 }}
+];
+
+actions.reduce(reduxStyleReducer, 0); // 4
