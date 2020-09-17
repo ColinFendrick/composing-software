@@ -19,6 +19,4 @@ const f = n => n * 3;
 
 const A = a.map(g).map(f);
 const APrime = a.map(x => f(g(x)));
-
-
 console.log(A, APrime, A.toString() === APrime.toString());
