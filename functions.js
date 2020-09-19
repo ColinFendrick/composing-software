@@ -9,3 +9,10 @@ export const trace = label => value => {
 	console.log(`${label}: ${value}`);
 };
 export const log = (...args) => console.log(...args);
+export const curry = (
+	f, arr = []
+) => (...args) => (
+	a => a.length === f.length ?
+	f(...a) :
+	curry(f, a)
+)([...arr, ...args]);
