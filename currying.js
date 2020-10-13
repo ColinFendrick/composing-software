@@ -1,4 +1,4 @@
-import { curry } from './functions.js'
+import { curry } from './functions.js';
 
 const greaterEqual = cutoff => n => n >= cutoff;
 const gte4 = greaterEqual(4);

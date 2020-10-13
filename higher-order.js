@@ -10,7 +10,7 @@
 */
 const reduce = (reducer, initial, arr) => {
 	let acc = initial;
-	for (let i = 0, { length } = arr; i< length; i++) {
+	for (let i = 0, { length } = arr; i < length; i++) {
     
 		// unique bits
 		acc = reducer(acc, arr[i]);

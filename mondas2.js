@@ -10,3 +10,5 @@ const hasPermission = ({ role }) =>
 	Promise.resolve(role === 'Author');
 
 const authUser = compose(hasPermission, getUserById);
+
+authUser(3).then(trace(label));

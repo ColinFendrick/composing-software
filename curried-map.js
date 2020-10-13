@@ -1,7 +1,7 @@
 import { curry, log, f as double } from './functions.js';
 
 const Identity = value => ({
-  map: fn => Identity(fn(value))
+	map: fn => Identity(fn(value))
 });
 const map = curry((fn, mappable) => mappable.map(fn));
 const mdouble = map(double);

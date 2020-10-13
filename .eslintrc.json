@@ -16,6 +16,7 @@
       "error",
       "tab"
     ],
+    "no-console": "off",
     "object-curly-spacing": ["error", "always", {
       "arraysInObjects": false,
       "objectsInObjects": false
