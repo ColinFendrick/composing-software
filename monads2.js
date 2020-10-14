@@ -23,3 +23,11 @@ const composePromises = composeM('then');
 // Do this instead!
 authUser = composePromises(hasPermission, getUserById);
 authUser(3).then(trace(label));
+
+/*
+	Functions can compose: a => b => c becomes a => c
+	Functors can compose functions w / context: given F(a) and two functions, a => b => c,
+		return F(c).
+	Monads can compose type lifting functions: a => M(b), b => M(c) becomes a => M(c)
+*/
+
