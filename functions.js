@@ -16,3 +16,10 @@ export const curry = (
 		f(...a) :
 		curry(f, a)
 )([...arr, ...args]);
+
+export const composePromises = (...ms) =>
+	ms.reduce((f, g) => x => g(x).then(f));
+
+export const composeM = method => (...ms) =>
+	ms.reduce((f, g) => x => g(x)[method](f));
+
