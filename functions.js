@@ -23,3 +23,4 @@ export const composePromises = (...ms) =>
 export const composeM = method => (...ms) =>
 	ms.reduce((f, g) => x => g(x)[method](f));
 
+export const assign = (a, b) => ({ ...a, ...b });
