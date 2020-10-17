@@ -26,7 +26,7 @@ let trace = label => value => {
 
 // since trace is written data-last, we can partially apply it
 // and use that partial application
-const traceAfterG = trace('after g'); 
+const traceAfterG = trace('after g');
 
 log(
 	pipe(

@@ -2,10 +2,10 @@
  * Functor data types are things that can be mapped over.
  * Must be structure preserving.
  * So map must be: f([a, b, c]) -> [f(a) f(b) f(c)]
- * 
+ *
  * Formally:
  * 1. Identity: for all a in C, id(a) -> a
- * 2. Composition: for all f, g there exists h such that h:(f_g) 
+ * 2. Composition: for all f, g there exists h such that h:(f_g)
  */
 
 const a = [1, 4, 9, 16, 25];

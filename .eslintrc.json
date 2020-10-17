@@ -1,14 +1,15 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2018,
+    "ecmaVersion": 12,
     "sourceType": "module"
   },
   "rules": {
@@ -16,17 +17,21 @@
       "error",
       "tab"
     ],
+    "no-trailing-spaces": "error",
     "no-console": "off",
-    "object-curly-spacing": ["error", "always", {
-      "arraysInObjects": false,
-      "objectsInObjects": false
-    }],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "arraysInObjects": false,
+        "objectsInObjects": false
+      }
+    ],
     "no-unused-vars": "off",
     "linebreak-style": [
       "error",
       "unix"
     ],
-    "eol-last": ["error", "always"],
     "quotes": [
       "error",
       "single"
@@ -35,8 +40,12 @@
       "error",
       "always"
     ],
-    "space-infix-ops": ["error", {
-      "int32Hint": false
-    }]
+    "eol-last": ["error", "always"],
+    "space-infix-ops": [
+      "error",
+      {
+        "int32Hint": false
+      }
+    ]
   }
 }

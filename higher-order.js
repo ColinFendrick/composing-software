@@ -1,4 +1,4 @@
-/* 
+/*
   HOFs take a func as an argument, or returns a function
   Can create a function that abstracts a process
   IE Reducers, which iterate over a list
@@ -11,7 +11,7 @@
 const reduce = (reducer, initial, arr) => {
 	let acc = initial;
 	for (let i = 0, { length } = arr; i < length; i++) {
-    
+
 		// unique bits
 		acc = reducer(acc, arr[i]);
 	}

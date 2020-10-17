@@ -4,10 +4,10 @@ const Id = value => ({
 	// Preserve the wrapping for map by passing
 	// the mapped value into the type lift
 	map: f => Id.of(f(value)),
-  
+
 	// Discard one level of wrapping by omitting the of() type lift
 	flatMap: f => f(value),
-  
+
 	// Easily inspect values
 	toString: () => `Id(${value})`
 });

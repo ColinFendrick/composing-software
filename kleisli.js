@@ -2,7 +2,7 @@ import { f as double, g as inc, trace } from './functions.js';
 
 const composeMap = method =>
 	(...ms) => (ms.reduce((f, g) => x => g(x)[method](f)));
-  
+
 // The algebraic definition of function composition: // (f . g)(x) = f(g(x))
 const compose = (f, g) => x => f(g(x));
 
