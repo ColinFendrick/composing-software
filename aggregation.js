@@ -1,9 +1,4 @@
-
-const objs = [
-	{ a:'a',b:'ab' },
-	{ b:'b' },
-	{ c:'c',b:'cb' }
-];
+import { objs } from './objs.js';
 
 const collection = (a, e) => a.concat([e]);
 
