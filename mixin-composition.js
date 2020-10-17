@@ -42,11 +42,58 @@ const withBattery = ({ capacity }) => o => {
 	};
 };
 
-const createDrone = ({ capacity = '3000mAh' }) => pipe(
+const withDriving = o => {
+	let currentSpeed = 0;
+	return {
+		...o,
+		drive(speed) {
+			currentSpeed = speed;
+			return this;
+		},
+		stop() {
+			currentSpeed = 0;
+			return this;
+		},
+		currentSpeed: () => currentSpeed
+	};
+};
+
+const withMusic = o => {
+	let currentSong = '';
+	return {
+		...o,
+		playSong(song) {
+			currentSong = song;
+			return this;
+		},
+		stopSong() {
+			currentSong = '';
+			return this;
+		},
+		currentSong: () => currentSong
+	};
+};
+
+const createDrone = ({ capacity = '3000mAh' } = {}) => pipe(
 	withFlying,
 	withBattery({ capacity }),
 	withConstructor(createDrone)
 )({});
+
+const createGuitar = ({ capacity = '150mAh' } = {}) => pipe(
+	withMusic,
+	withBattery({ capacity }),
+	withConstructor(createGuitar)
+)({});
+
+const myGuitar = createGuitar();
+
+console.log(`
+  Can play: ${myGuitar.playSong('While My Guitar Gently Weeps').currentSong()},
+  Default battery capacity: ${myGuitar.getCapacity()},
+  Can stop: ${myGuitar.stopSong().currentSong()},
+  constructor: ${myGuitar.constructor === createGuitar}
+`);
 
 const myDrone = createDrone({ capacity: '5500mAh' });
 
@@ -62,3 +109,18 @@ console.log(`
 console.log(`
   constructor linked: ${myDrone.constructor === createDrone}
 `);
+
+// One off, does not link constructor (since no constructor fn exists)
+const myElectricCar = pipe(
+	withDriving,
+	withBattery({ capacity: '4000mAh' })
+)({});
+
+console.log(`
+  can drive: ${myElectricCar.drive(30).currentSpeed()},
+  can stop: ${myElectricCar.stop().currentSpeed()},
+  battery: ${myElectricCar.getCapacity()},
+  battery drained: ${myElectricCar.draw(120).getCharge()},
+  battery refilled: ${myElectricCar.recharge(75).getCharge()}
+`);
+
