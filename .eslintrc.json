@@ -18,6 +18,7 @@
       "tab"
     ],
     "no-trailing-spaces": "error",
+    "comma-dangle": ["error", "never"],
     "no-console": "off",
     "object-curly-spacing": [
       "error",
