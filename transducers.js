@@ -1,4 +1,4 @@
-import { compose, isEven, f as double } from './functions.js';
+import { compose, curry, isEven, f as double } from './functions.js';
 
 // Applies a function to the values inside some context
 // In this case, the context is the transucer pipeline
@@ -35,3 +35,10 @@ const xform = doubleEvens(arrayConcat);
 const res = [1, 2, 3, 4, 5, 6].reduce(xform, []);
 
 console.log(res);
+
+const transduce = curry((step, initial, xform, foldable) =>
+	foldable.reduce(xform(step), initial)
+);
+const toArray = transduce(arrayConcat, []);
+const result2 = toArray(doubleEvens, [1, 2, 3, 4, 5, 6]);
+console.log(result2);
