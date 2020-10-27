@@ -1,7 +1,13 @@
 import R from 'ramda';
 
-const { compose, lensProp, view, set } = R;
+import { f as double, g as increment, compose } from './functions.js';
 
+const { lensProp, view, set, curry } = R;
+
+const store = {
+	a: 'foo',
+	b: 'bar'
+};
 const lensProps = ['foo', 'bar', 1];
 
 const lenses = lensProps.map(lensProp);
@@ -31,5 +37,34 @@ const over = (lens, f, store) => set(lens, f(view(lens, store)), store);
 const uppercase = x => x.toUpperCase();
 
 console.log(
-	over(lensProp('a'), uppercase, { a: 'foo', b: 'bar' })
+	over(lensProp('a'), uppercase, store)
 );
+
+{
+	const id = x => x;
+	const lens = lensProp('a');
+	const a = over(lens, id, store);
+	const b = store;
+	console.log(a, b);
+}
+
+
+const curryOver = curry(
+	(lens, f, store) => set(lens, f(view(lens, store)), store)
+);
+
+{ //over(lens, f) after over (lens, g) is the same as
+	// over(lens, compose(f, g))
+	const lens = lensProp('a');
+
+	const store = { a: 20 };
+
+	const a = compose(
+		curryOver(lens, double),
+		curryOver(lens, increment)
+	);
+
+	const b = curryOver(lens, compose(double, increment));
+
+	console.log(a(store), b(store));
+}
