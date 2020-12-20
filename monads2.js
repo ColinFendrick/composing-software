@@ -30,4 +30,3 @@ authUser(3).then(trace(label));
 		return F(c).
 	Monads can compose type lifting functions: a => M(b), b => M(c) becomes a => M(c)
 */
-
