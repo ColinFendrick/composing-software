@@ -20,9 +20,9 @@ console.log(newMsg === mySecret());
 
 // Partial applications
 
-const partiallyApply = (fn, ...fixedArgs) => {
+const partiallyApply = (fn, ...args) => {
   return function (...remainingArgs) {
-    return fn.apply(this, fixedArgs.concat(remainingArgs));
+    return fn.apply(this, args.concat(remainingArgs));
   };
 };
 
